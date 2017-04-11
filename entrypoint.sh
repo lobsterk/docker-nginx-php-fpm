@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export NGINX_CONF=${NGINX_CONF:-'/etc/nginx/nginx.conf'}
-export PHP_FPM_CONF=${PHP_FPM_CONF:-'/etc/php/7.0/fpm/php-fpm.conf'}
+export PHP_FPM_CONF=${PHP_FPM_CONF:-'/etc/php/7.0/fpm/php.ini'}
 
 
 TRAPPED_SIGNAL=false
