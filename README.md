@@ -8,10 +8,11 @@
 - Run project
 ```     
 docker run -d -p 8080:80 \
-      -v pwd/www/:/var/www/html/ \
-      -v pwd/php.ini:/etc/php/7.0/fpm/php.ini \
+      --rm \
+      -v $(pwd)/www/:/var/www/html/ \
+      -v $(pwd)/php.ini:/etc/php/7.0/fpm/php.ini \
       --name test-docker \
-      lobsterk/nginx-php-fpm7.0:v.10
+      lobsterk/nginx-php-fpm7.0
 ```
 
 - Enter container bash
