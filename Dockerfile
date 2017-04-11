@@ -5,7 +5,6 @@ MAINTAINER Danil Kopylov <lobsterk@yandex.ru>
 RUN apt-get update && \
     apt-get install -y --no-install-recommends --no-install-suggests \
     nginx \
-    php \
     php-fpm \
     ca-certificates \
     gettext \
@@ -30,6 +29,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 RUN rm -f /etc/nginx/sites-enabled/*
 COPY default.conf /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY php.ini /etc/php/7.0/fpm/php.ini
 
 RUN mkdir -p /run/php && touch /run/php/php7.0-fpm.sock && touch /run/php/php7.0-fpm.pid
 
