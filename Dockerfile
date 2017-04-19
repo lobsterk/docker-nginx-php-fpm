@@ -11,8 +11,6 @@ RUN apt-get update && \
     mc \
     libmcrypt-dev  \
     libicu-dev \
-    make \
-    gcc \
     libcurl4-openssl-dev \
     mysql-client \
     libldap2-dev \
@@ -50,8 +48,14 @@ RUN apt-get update && \
     php-xdebug && \
     echo "extension=amqp.so" > /etc/php/7.0/cli/conf.d/10-amqp.ini && \
     echo "extension=amqp.so" > /etc/php/7.0/fpm/conf.d/10-amqp.ini && \
-    rm -f /etc/php/7.0/mods-available/xdebug.ini \
+    rm -f /etc/php/7.0/mods-available/xdebug.ini
+
+# Install node.js
+RUN apt-get install -y --no-install-recommends --no-install-suggests \
+    nodejs \
+    npm \
     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 # Install mail server
 COPY mailserver.sh /tmp/mailserver.sh
@@ -66,8 +70,8 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/php7.0-fpm.log
 
 RUN rm -f /etc/nginx/sites-enabled/*
-COPY default.conf /etc/nginx/conf.d/default.conf
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 #COPY php.ini /etc/php/7.0/fpm/php.ini
 
 

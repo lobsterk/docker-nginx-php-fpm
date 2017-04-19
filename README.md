@@ -2,11 +2,11 @@
 
 ## Overview
 
-This is a Dockerfile/image to build a container for nginx and php-fpm, with php modules.
+This is a Dockerfile/image to build a container ubuntu:16.04 for nginx and php-fpm, with php modules. and also  Node.js, npm.
 
-| Docker Tag 	| GitHub Release 	| Nginx Version 	| PHP Version 	|
-|------------	|----------------	|---------------	|-------------	|
-| latest     	| Master Branch  	| 1.10.0        	| 7.0.15      	|
+| Docker Tag 	| GitHub Release 	| Nginx Version 	| PHP Version 	| Node js       | npm        	|
+|------------	|----------------	|---------------	|-------------	|-------------	| -------------	|
+| latest     	| Master Branch  	| 1.10.0        	| 7.0.15      	| 4.2.6         | 3.5.2      	|
 
 
 List PHP modules:
@@ -19,7 +19,9 @@ sysvmsg sysvsem sysvshm tokenizer wddx xml xmlreader xmlrpc xmlwriter xsl Zend O
 [Zend Modules]
 Zend OPcache
 ```
+Addition:
 
+`mc postfix`
 
 ## Links 
 [Docker hub](https://hub.docker.com/r/lobsterk/nginx-php-fpm7.0/)
