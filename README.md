@@ -1,4 +1,4 @@
-# docker-web-server
+# docker nginx php-fpm 7.0 node.js npm
 
 ## Overview
 
