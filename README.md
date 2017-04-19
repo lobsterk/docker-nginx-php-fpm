@@ -55,6 +55,7 @@ docker run -d -p 8080:80 \
       lobsterk/nginx-php-fpm7.0
 ```
 
+
 ##### Enter container bash
 
 `docker exec -it test-docker /bin/bash`
