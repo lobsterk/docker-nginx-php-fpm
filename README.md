@@ -1,12 +1,12 @@
-# docker nginx php-fpm 7.0 node.js npm
+# docker nginx php-fpm 7.0 git
 
 ## Overview
 
-This is a Dockerfile/image to build a container ubuntu:16.04 for nginx and php-fpm, with php modules. and also  Node.js, npm.
+This is a Dockerfile/image to build a container ubuntu:16.04 for nginx and php-fpm, with php modules, and also git.
 
-| Docker Tag 	| GitHub Release 	| Nginx Version 	| PHP Version 	| Node js       | npm        	|
-|------------	|----------------	|---------------	|-------------	|-------------	| -------------	|
-| latest     	| Master Branch  	| 1.10.0        	| 7.0.15      	| 4.2.6         | 3.5.2      	|
+| Docker Tag 	| GitHub Release 	| Nginx Version 	| PHP Version 	| Git           | 
+|------------	|----------------	|---------------	|-------------	|-------------	| 
+| latest     	| Master Branch  	| 1.10.0        	| 7.0.15      	| 2.7.4         | 
 
 
 List PHP modules:
@@ -21,16 +21,16 @@ Zend OPcache
 ```
 Addition:
 
-`mc postfix`
+`git mc postfix`
 
 ## Links 
-[Docker hub](https://hub.docker.com/r/lobsterk/nginx-php-fpm7.0/)
+[Docker hub](https://hub.docker.com/r/lobsterk/docker-nginx-php-fpm7.0/)
 
 ## Quick Start
 
 To pull from docker hub:
 
-`docker pull lobsterk/nginx-php-fpm7.0`
+`docker pull lobsterk/docker-nginx-php-fpm7.0`
 
 ### Running
 ##### Simple run project 
@@ -39,7 +39,7 @@ docker run -d -p 8080:80 \
       --rm \
       -v $(pwd)/www/:/var/www/html/ \
       --name test-docker \
-      lobsterk/nginx-php-fpm7.0
+      lobsterk/docker-nginx-php-fpm7.0
 ```
 
 ##### Run project with nginx and php-fpm configs
@@ -52,10 +52,8 @@ docker run -d -p 8080:80 \
       -v $(pwd)/nginx/default.conf:/etc/nginx/conf.d/default.conf \
       -v $(pwd)/nginx/nginx.conf/:/etc/nginx/nginx.conf/ \
       --name test-docker \
-      lobsterk/nginx-php-fpm7.0
+      lobsterk/docker-nginx-php-fpm7.0
 ```
-
-
 
 ##### Enter container bash
 

@@ -50,12 +50,16 @@ RUN apt-get update && \
     echo "extension=amqp.so" > /etc/php/7.0/fpm/conf.d/10-amqp.ini && \
     rm -f /etc/php/7.0/mods-available/xdebug.ini
 
+# Install git core
+RUN apt install -y --no-install-recommends --no-install-suggests \
+    git
+
 # Install node.js
-RUN apt-get install -y --no-install-recommends --no-install-suggests \
-    nodejs \
-    npm \
-    && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
-RUN ln -s /usr/bin/nodejs /usr/bin/node
+#RUN apt-get install -y --no-install-recommends --no-install-suggests \
+#    nodejs \
+#    npm \
+#    && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+#RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 # Install mail server
 COPY mailserver.sh /tmp/mailserver.sh
