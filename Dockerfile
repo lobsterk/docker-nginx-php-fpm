@@ -16,7 +16,8 @@ RUN apt-get update && \
     libldap2-dev \
     libfreetype6-dev \
     libfreetype6 \
-    libpng12-dev
+    libpng12-dev \
+    curl 
 
 
 # exts

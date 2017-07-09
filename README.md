@@ -21,7 +21,7 @@ Zend OPcache
 ```
 Addition:
 
-`git mc postfix`
+`git mc curl postfix`
 
 ## Links 
 [Docker hub](https://hub.docker.com/r/lobsterk/docker-nginx-php-fpm7.0/)
