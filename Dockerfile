@@ -2,10 +2,18 @@ FROM ubuntu:16.04
 
 MAINTAINER Danil Kopylov <lobsterk@yandex.ru>
 
+# install php 7.2
+RUN apt-get update && \
+    apt-get upgrade -y --no-install-recommends --no-install-suggests && \
+    apt-get install software-properties-common python-software-properties -y --no-install-recommends --no-install-suggests && \
+    LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y && \
+    apt-get update && \
+    apt-get install php7.2-fpm php7.2-cli -y --no-install-recommends --no-install-suggests
+
+
 RUN apt-get update && \
     apt-get install -y --no-install-recommends --no-install-suggests \
     nginx \
-    php-fpm \
     ca-certificates \
     gettext \
     mc \
@@ -23,50 +31,48 @@ RUN apt-get update && \
 # exts
 RUN apt-get update && \
     apt-get install -y --no-install-recommends --no-install-suggests \
-    php-mongodb \
-    php-curl \
-    php-intl \
-    php-soap \
-    php-xml \
+    php-pear \
+    php7.2-mongodb \
+    php7.2-curl \
+    php7.2-intl \
+    php7.2-soap \
+    php7.2-xml \
     php-mcrypt \
-    php-bcmath \
-    php-mysql \
-    php-mysqli \
-    php-amqp \
-    php-mbstring \
-    php-ldap \
-    php-zip \
-    php-iconv \
-    php-pdo \
-    php-json \
-    php-simplexml \
-    php-xmlrpc \
-    php-gmp \
-    php-fileinfo \
-    php-sockets \
-    php-ldap \
-    php-gd \
-    php-xdebug && \
-    echo "extension=amqp.so" > /etc/php/7.0/cli/conf.d/10-amqp.ini && \
-    echo "extension=amqp.so" > /etc/php/7.0/fpm/conf.d/10-amqp.ini && \
-    rm -f /etc/php/7.0/mods-available/xdebug.ini
+    php7.2-bcmath \
+    php7.2-mysql \
+    php7.2-mysqli \
+    php7.2-amqp \
+    php7.2-mbstring \
+    php7.2-ldap \
+    php7.2-zip \
+    php7.2-iconv \
+    php7.2-pdo \
+    php7.2-json \
+    php7.2-simplexml \
+    php7.2-xmlrpc \
+    php7.2-gmp \
+    php7.2-fileinfo \
+    php7.2-sockets \
+    php7.2-ldap \
+    php7.2-gd \
+    php7.2-xdebug && \
+    echo "extension=apcu.so" | tee -a /etc/php/7.2/mods-available/cache.ini
 
 # Install git core
-RUN apt install -y --no-install-recommends --no-install-suggests \
-    git
+RUN apt-get install -y --no-install-recommends --no-install-suggests \
+    git-core
 
 # Install composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-    && php -r "if (hash_file('SHA384', 'composer-setup.php') === '669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
     && php composer-setup.php --install-dir=bin --filename=composer \
     && php -r "unlink('composer-setup.php');"
 
 # Install node.js
-#RUN apt-get install -y --no-install-recommends --no-install-suggests \
-#    nodejs \
-#    npm \
-#    && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
-#RUN ln -s /usr/bin/nodejs /usr/bin/node
+RUN apt-get install -y --no-install-recommends --no-install-suggests \
+    nodejs \
+    npm \
+    && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 # Install mail server
 COPY mailserver.sh /tmp/mailserver.sh
@@ -86,7 +92,7 @@ COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 #COPY php.ini /etc/php/7.0/fpm/php.ini
 
 
-RUN mkdir -p /run/php && touch /run/php/php7.0-fpm.sock && touch /run/php/php7.0-fpm.pid
+RUN mkdir -p /run/php && touch /run/php/php7.2-fpm.sock && touch /run/php/php7.2-fpm.pid
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
 EXPOSE 80

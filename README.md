@@ -1,12 +1,12 @@
-# docker nginx php-fpm 7.0 git
+# docker nginx php-fpm 7.2 git
 
 ## Overview
 
 This is a Dockerfile/image to build a container ubuntu:16.04 for nginx and php-fpm, with php modules, and also git.
 
-| Docker Tag 	| GitHub Release 	| Nginx Version 	| PHP Version 	| Git           | 
-|------------	|----------------	|---------------	|-------------	|-------------	| 
-| latest     	| Master Branch  	| 1.10.0        	| 7.0.15      	| 2.7.4         | 
+| Docker Tag 	| GitHub Release 	| Nginx Version 	| PHP Version 	| Git           | nodejs           |
+|------------	|----------------	|---------------	|-------------	|-------------	| -------------	   |
+| latest     	| Master Branch  	| 1.10.3        	|   7.2.4    	| 2.7.4         |  4.2.6           |
 
 
 List PHP modules:
