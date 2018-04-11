@@ -84,12 +84,11 @@ RUN cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log \
-	&& ln -sf /dev/stderr /var/log/php7.0-fpm.log
+	&& ln -sf /dev/stderr /var/log/php7.2-fpm.log
 
 RUN rm -f /etc/nginx/sites-enabled/*
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-#COPY php.ini /etc/php/7.0/fpm/php.ini
 
 
 RUN mkdir -p /run/php && touch /run/php/php7.2-fpm.sock && touch /run/php/php7.2-fpm.pid

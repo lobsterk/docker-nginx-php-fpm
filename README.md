@@ -46,9 +46,9 @@ docker run -d -p 8080:80 \
 ```     
 docker run -d -p 8080:80 \
       --rm \
-      -v $(pwd)/www/:/var/www/html/ \
-      -v $(pwd)/php-fpm/php.ini:/etc/php/7.0/fpm/php.ini \
-      -v $(pwd)/php-fpm/php-fpm.conf:/etc/php/7.0/fpm/php-fpm.conf \
+      -v $(pwd)/www/:/var/www/ \
+      -v $(pwd)/php-fpm/php.ini:/etc/php/7.2/fpm/php.ini \
+      -v $(pwd)/php-fpm/php-fpm.conf:/etc/php/7.2/fpm/php-fpm.conf \
       -v $(pwd)/nginx/default.conf:/etc/nginx/conf.d/default.conf \
       -v $(pwd)/nginx/nginx.conf/:/etc/nginx/nginx.conf/ \
       --name test-docker \
