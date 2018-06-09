@@ -12,6 +12,10 @@ This is a Dockerfile/image to build a container ubuntu:16.04 for nginx and php-f
 |------------	|----------------	|----------------	|---------------	|
 | latest     	| 1.6.5          	| 10.4.0         	| 6.1.0          	|
 
+| Docker Tag 	| composer         	| nodejs         	| npm           	|
+|------------	|----------------	|----------------	|---------------	|
+| latest     	| 1.6.5          	| 10.4.0         	| 6.1.0          	|
+
 
 List PHP modules:
 ```
