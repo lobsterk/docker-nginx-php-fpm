@@ -68,11 +68,12 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php -r "unlink('composer-setup.php');"
 
 # Install node.js
-RUN apt-get install -y --no-install-recommends --no-install-suggests \
-    nodejs \
-    npm \
-    && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
-RUN ln -s /usr/bin/nodejs /usr/bin/node
+
+RUN  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash \
+&& export NVM_DIR="$HOME/.nvm" \
+&& [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" \
+&& nvm install node && nvm use node \
+&& npm cache clean -f && npm install -g n && n stable && npm install cross-env
 
 # Install mail server
 COPY mailserver.sh /tmp/mailserver.sh
@@ -93,6 +94,7 @@ COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
 RUN mkdir -p /run/php && touch /run/php/php7.2-fpm.sock && touch /run/php/php7.2-fpm.pid
 COPY entrypoint.sh /entrypoint.sh
+WORKDIR /var/www/
 RUN chmod 755 /entrypoint.sh
 EXPOSE 80
 CMD ["/entrypoint.sh"]

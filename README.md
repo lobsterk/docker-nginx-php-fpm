@@ -8,6 +8,10 @@ This is a Dockerfile/image to build a container ubuntu:16.04 for nginx and php-f
 |------------	|----------------	|---------------	|-------------	|-------------	| -------------	   |
 | latest     	| Master Branch  	| 1.10.3        	|   7.2.4    	| 2.7.4         |  4.2.6           |
 
+| Docker Tag 	| composer         	| nodejs         	| npm           	|
+|------------	|----------------	|----------------	|---------------	|
+| latest     	| 1.6.5          	| 10.4.0         	| 6.1.0          	|
+
 
 List PHP modules:
 ```
@@ -33,11 +37,17 @@ To pull from docker hub:
 `docker pull lobsterk/docker-nginx-php-fpm7.0`
 
 ### Running
+
+##### Simple run project with docker compose
+
+[web-server](https://github.com/lobsterk/docker-web-basic)
+
+
 ##### Simple run project 
 ```     
 docker run -d -p 8080:80 \
       --rm \
-      -v $(pwd)/www/:/var/www/html/ \
+      -v $(pwd)/www/:/var/www/ \
       --name test-docker \
       lobsterk/docker-nginx-php-fpm7.0
 ```
