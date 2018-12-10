@@ -18,7 +18,7 @@ List PHP modules:
 [PHP Modules]
 amqp bcmath calendar Core ctype curl date  dom exif fileinfo filter ftp gd gettext gmp hash
 iconv intl json ldap libxml mbstring mcrypt mongodb mysqli mysqlnd openssl pcntl pcre PDO
-pdo_mysql Phar posix readline Reflection session shmop SimpleXML soap sockets SPL standard 
+pdo_mysql Phar posix redis readline Reflection session shmop SimpleXML soap sockets SPL standard 
 sysvmsg sysvsem sysvshm tokenizer wddx xml xmlreader xmlrpc xmlwriter xsl Zend OPcache zip zlib
 [Zend Modules]
 Zend OPcache
