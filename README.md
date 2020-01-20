@@ -6,11 +6,11 @@ This is a Dockerfile/image to build a container ubuntu:16.04 for nginx and php-f
 
 | Docker Tag 	| GitHub Release 	| Nginx Version 	| PHP Version 	| Git           |
 |------------	|----------------	|---------------	|-------------	|-------------	|
-| latest     	| Master Branch  	| 1.10.3        	|   7.2.4    	| 2.7.4         |
+| latest     	| Master Branch  	| 1.14.0        	|   7.3.13    	| 2.17.1         |
 
 | Docker Tag 	| composer         	| nodejs         	| npm           	|
 |------------	|----------------	|----------------	|---------------	|
-| latest     	| 1.6.5          	| 10.4.0         	| 6.1.0          	|
+| latest     	| 1.9.2          	| 13.6.0         	| 6.13.4          	|
 
 
 List PHP modules:
@@ -42,9 +42,8 @@ To pull from docker hub:
 
 [web-server](https://github.com/lobsterk/docker-web-basic)
 
-
 ##### Simple run project 
-```     
+```
 docker run -d -p 8080:80 \
       --rm \
       -v $(pwd)/www/:/var/www/ \
@@ -57,8 +56,8 @@ docker run -d -p 8080:80 \
 docker run -d -p 8080:80 \
       --rm \
       -v $(pwd)/www/:/var/www/ \
-      -v $(pwd)/php-fpm/php.ini:/etc/php/7.2/fpm/php.ini \
-      -v $(pwd)/php-fpm/php-fpm.conf:/etc/php/7.2/fpm/php-fpm.conf \
+      -v $(pwd)/php-fpm/php.ini:/etc/php/7.3/fpm/php.ini \
+      -v $(pwd)/php-fpm/php-fpm.conf:/etc/php/7.3/fpm/php-fpm.conf \
       -v $(pwd)/nginx/default.conf:/etc/nginx/conf.d/default.conf \
       -v $(pwd)/nginx/nginx.conf/:/etc/nginx/nginx.conf/ \
       --name test-docker \

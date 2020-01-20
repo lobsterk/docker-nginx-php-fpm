@@ -1,14 +1,14 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 MAINTAINER Danil Kopylov <lobsterk@yandex.ru>
 
-# install php 7.2
+# install php 7.3
 RUN apt-get update && \
     apt-get upgrade -y --no-install-recommends --no-install-suggests && \
-    apt-get install software-properties-common python-software-properties -y --no-install-recommends --no-install-suggests && \
+    apt-get install software-properties-common -y --no-install-recommends --no-install-suggests && \
     LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y && \
     apt-get update && \
-    apt-get install php7.2-fpm php7.2-cli -y --no-install-recommends --no-install-suggests
+    apt-get install php7.3-fpm php7.3-cli -y --no-install-recommends --no-install-suggests
 
 
 RUN apt-get update && \
@@ -24,40 +24,39 @@ RUN apt-get update && \
     libldap2-dev \
     libfreetype6-dev \
     libfreetype6 \
-    libpng12-dev \
-    curl 
+    curl
 
 
 # exts
 RUN apt-get update && \
     apt-get install -y --no-install-recommends --no-install-suggests \
     php-pear \
-    php7.2-mongodb \
-    php7.2-curl \
-    php7.2-intl \
-    php7.2-soap \
-    php7.2-xml \
-    php-mcrypt \
-    php7.2-bcmath \
-    php7.2-mysql \
-    php7.2-mysqli \
-    php7.2-amqp \
-    php7.2-mbstring \
-    php7.2-ldap \
-    php7.2-zip \
-    php7.2-iconv \
-    php7.2-pdo \
-    php7.2-json \
-    php7.2-simplexml \
-    php7.2-xmlrpc \
-    php7.2-gmp \
-    php7.2-fileinfo \
-    php7.2-sockets \
-    php7.2-ldap \
-    php7.2-gd \
-    php7.2-redis \
-    php7.2-xdebug && \
-    echo "extension=apcu.so" | tee -a /etc/php/7.2/mods-available/cache.ini
+    php7.3-mongodb \
+    php7.3-curl \
+    php7.3-intl \
+    php7.3-soap \
+    php7.3-xml \
+    php7.1-mcrypt \
+    php7.3-bcmath \
+    php7.3-mysql \
+    php7.3-mysqli \
+    php7.3-amqp \
+    php7.3-mbstring \
+    php7.3-ldap \
+    php7.3-zip \
+    php7.3-iconv \
+    php7.3-pdo \
+    php7.3-json \
+    php7.3-simplexml \
+    php7.3-xmlrpc \
+    php7.3-gmp \
+    php7.3-fileinfo \
+    php7.3-sockets \
+    php7.3-ldap \
+    php7.3-gd \
+    php7.3-redis \
+    php7.3-xdebug && \
+    echo "extension=apcu.so" | tee -a /etc/php/7.3/mods-available/cache.ini
 
 # Install git core
 RUN apt-get install -y --no-install-recommends --no-install-suggests \
@@ -69,8 +68,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php -r "unlink('composer-setup.php');"
 
 # Install node.js
-
-RUN  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash \
+RUN  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash \
 && export NVM_DIR="$HOME/.nvm" \
 && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" \
 && nvm install node && nvm use node \
@@ -86,16 +84,19 @@ RUN cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime
 # forward request and error logs to docker log collector
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log \
-	&& ln -sf /dev/stderr /var/log/php7.2-fpm.log
+	&& ln -sf /dev/stderr /var/log/php7.3-fpm.log
 
 RUN rm -f /etc/nginx/sites-enabled/*
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
+COPY ./www/index.php /var/www/
+RUN mkdir -p /run/php && touch /run/php/php7.3-fpm.sock && touch /run/php/php7.3-fpm.pid
 
-RUN mkdir -p /run/php && touch /run/php/php7.2-fpm.sock && touch /run/php/php7.2-fpm.pid
 COPY entrypoint.sh /entrypoint.sh
+
 WORKDIR /var/www/
 RUN chmod 755 /entrypoint.sh
+
 EXPOSE 80
 CMD ["/entrypoint.sh"]
