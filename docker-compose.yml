@@ -1,0 +1,17 @@
+version: '2'
+
+### Services
+services:
+  ### Web Server Container
+  web:
+    image: lobsterk/web-nginx-php
+    container_name: web
+    restart: always
+    ports:
+      - "8172:80"
+    volumes:
+      - ./www:/var/www
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./php-fpm/php.ini:/etc/php/7.3/fpm/php.ini
+      - ./php-fpm/php-fpm.conf:/etc/php/7.3/fpm/php-fpm.conf
