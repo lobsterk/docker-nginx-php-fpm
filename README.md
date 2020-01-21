@@ -1,4 +1,5 @@
-# docker nginx php-fpm 7.2 git
+# docker web server
+
 
 ## Overview
 
@@ -28,7 +29,7 @@ Addition:
 `git mc curl postfix`
 
 ## Links 
-[Docker hub](https://hub.docker.com/r/lobsterk/docker-nginx-php-fpm7.0/)
+[Docker hub](https://hub.docker.com/r/lobsterk/web-nginx-php/)
 
 ## Quick Start
 
@@ -48,7 +49,7 @@ docker run -d -p 8080:80 \
       --rm \
       -v $(pwd)/www/:/var/www/ \
       --name test-docker \
-      lobsterk/docker-nginx-php-fpm7.0
+      lobsterk/web-nginx-php
 ```
 
 ##### Run project with nginx and php-fpm configs
@@ -61,7 +62,7 @@ docker run -d -p 8080:80 \
       -v $(pwd)/nginx/default.conf:/etc/nginx/conf.d/default.conf \
       -v $(pwd)/nginx/nginx.conf/:/etc/nginx/nginx.conf/ \
       --name test-docker \
-      lobsterk/docker-nginx-php-fpm7.0
+      lobsterk/web-nginx-php
 ```
 
 ##### Enter container bash
