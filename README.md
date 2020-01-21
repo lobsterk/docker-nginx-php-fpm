@@ -35,7 +35,7 @@ Addition:
 
 To pull from docker hub:
 
-`docker pull lobsterk/docker-nginx-php-fpm7.0`
+`docker pull lobsterk/web-nginx-php`
 
 ### Running
 
