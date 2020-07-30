@@ -3,15 +3,15 @@
 
 ## Overview
 
-This is a Dockerfile/image to build a container ubuntu:16.04 for nginx and php-fpm, with php modules, and also git.
+This is a Dockerfile/image to build a container ubuntu: 20.04 for nginx and php-fpm, with php modules and also git.
 
 | Docker Tag 	| GitHub Release 	| Nginx Version 	| PHP Version 	| Git           |
 |------------	|----------------	|---------------	|-------------	|-------------	|
-| latest     	| Master Branch  	| 1.14.0        	|   7.3.13    	| 2.17.1         |
+| latest     	| Master Branch  	| 1.14.0        	|   7.3.20    	| 2.25.1        |
 
 | Docker Tag 	| composer         	| nodejs         	| npm           	|
 |------------	|----------------	|----------------	|---------------	|
-| latest     	| 1.9.2          	| 13.6.0         	| 6.13.4          	|
+| latest     	| 1.10.9          	| 14.7.0         	| 6.14.7          	|
 
 
 List PHP modules:
