@@ -1,17 +1,11 @@
 # docker web server
 
+## Image versions
 
-## Overview
+| Image Version | Base Image Version    | Nginx Version         | PHP Version   | Composer Ver | Nodejs Ver | NPM Ver  |
+|---------------|-----------------------|-----------------------|---------------|--------------|------------|----------|
+| 1.0.0         | Ubuntu 20.04          | 1.18.0                | 7.4.3         | 2.0.9        | 15.7.0     | 7.4.3    |
 
-This is a Dockerfile/image to build a container ubuntu: 20.04 for nginx and php-fpm, with php modules and also git.
-
-| Docker Tag 	| GitHub Release 	| Nginx Version 	| PHP Version 	| Git           |
-|------------	|----------------	|---------------	|-------------	|-------------	|
-| latest     	| Master Branch  	| 1.14.0        	|   7.3.20    	| 2.25.1        |
-
-| Docker Tag 	| composer         	| nodejs         	| npm           	|
-|------------	|----------------	|----------------	|---------------	|
-| latest     	| 1.10.9          	| 14.7.0         	| 6.14.7          	|
 
 
 List PHP modules:
@@ -28,20 +22,6 @@ Addition:
 
 `git mc curl postfix`
 
-## Links 
-[Docker hub](https://hub.docker.com/r/lobsterk/web-nginx-php/)
-
-## Quick Start
-
-To pull from docker hub:
-
-`docker pull lobsterk/web-nginx-php`
-
-### Running
-
-##### Simple run project with docker compose
-
-[web-server](https://github.com/lobsterk/docker-web-basic)
 
 ##### Simple run project 
 ```

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 export NGINX_CONF=${NGINX_CONF:-'/etc/nginx/nginx.conf'}
-export PHP_FPM_CONF=${PHP_FPM_CONF:-'/etc/php/7.3/fpm/php.ini'}
+export PHP_FPM_CONF=${PHP_FPM_CONF:-'/etc/php/7.4/fpm/php.ini'}
 
 
 TRAPPED_SIGNAL=false
@@ -11,7 +11,7 @@ nginx -c $NGINX_CONF  -g 'daemon off;' 2>&1 &
 NGINX_PID=$!
 
 echo 'Starting PHP-FPM';
-php-fpm7.3 -R -F -c $PHP_FPM_CONF 2>&1 &
+php-fpm7.4 -R -F -c $PHP_FPM_CONF 2>&1 &
 PHP_FPM_PID=$!
 
 trap "TRAPPED_SIGNAL=true; kill -15 $NGINX_PID; kill -15 $PHP_FPM_PID;" SIGTERM  SIGINT
