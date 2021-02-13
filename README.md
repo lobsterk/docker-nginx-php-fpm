@@ -7,11 +7,11 @@ This is a Dockerfile/image to build a container ubuntu: 20.04 for nginx and php-
 
 | Docker Tag 	| GitHub Release 	| Nginx Version 	| PHP Version 	| Git           |
 |------------	|----------------	|---------------	|-------------	|-------------	|
-| latest     	| Master Branch  	| 1.14.0        	|   7.3.20    	| 2.25.1        |
+| latest     	| Master Branch  	| 1.18.0        	|   7.3.27    	| 2.25.1        |
 
 | Docker Tag 	| composer         	| nodejs         	| npm           	|
 |------------	|----------------	|----------------	|---------------	|
-| latest     	| 1.10.9          	| 14.7.0         	| 6.14.7          	|
+| latest     	| 2.0.9          	| 10.19.0         	| 6.14.4          	|
 
 
 List PHP modules:
