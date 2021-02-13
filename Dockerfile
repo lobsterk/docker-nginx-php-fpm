@@ -58,11 +58,9 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php -r "unlink('composer-setup.php');"
 
 # Install node.js
-RUN  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash \
-&& export NVM_DIR="$HOME/.nvm" \
-&& [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" \
-&& nvm install node && nvm use node \
-&& npm cache clean -f && npm install -g n && n stable #&& npm install cross-env
+RUN apt install -y gpg-agent && \
+    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
+    apt update && apt install -y nodejs yarn
 
 # set timezone Europe/Moscow
 RUN cp /usr/share/zoneinfo/Europe/Moscow /etc/localtime
@@ -76,7 +74,7 @@ RUN rm -f /etc/nginx/sites-enabled/*
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 
-COPY ./www/index.php /var/www/
+COPY ./www/index.php /var/www/public/
 RUN mkdir -p /run/php && touch /run/php/php7.4-fpm.sock && touch /run/php/php7.4-fpm.pid
 
 COPY entrypoint.sh /entrypoint.sh
